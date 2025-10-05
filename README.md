@@ -2,6 +2,8 @@
 
 A comprehensive turf management dashboard designed specifically for golf courses, sports fields, and turf facilities. Plan, visualize, and track your complete annual treatment program with an intuitive drag-and-drop interface.
 
+Demo: https://ar-turf-tracker.vercel.app/
+
 ![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38bdf8?style=flat-square&logo=tailwindcss)
