@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Download, GripVertical } from "lucide-react"
+import { Printer, GripVertical, Sprout } from "lucide-react"
 
 interface ApplicationPeriod {
   month: string
@@ -513,8 +513,12 @@ export default function Component() {
   const [dragState, setDragState] = useState<DragState | null>(null)
   const [dropTarget, setDropTarget] = useState<{ month: string; week: number } | null>(null)
 
+  const handlePrint = () => {
+    window.print()
+  }
+
   const getIntensityClass = (weekInSequence: number, color: string, isDragging = false) => {
-    const baseClasses = "w-4 h-4 transition-all"
+    const baseClasses = "w-6 h-6 transition-all"
     const intensity = weekInSequence === 1 ? "heavy" : weekInSequence === 2 ? "medium" : "light"
     const opacity = isDragging ? "opacity-50" : ""
 
@@ -619,12 +623,20 @@ export default function Component() {
     <div className="w-full max-w-full mx-auto p-6 bg-gray-50 min-h-screen overflow-x-auto">
       <Card className="w-full min-w-max">
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-xl font-semibold">
-            Program summary: {currentYear}-{currentYear + 1}
-          </CardTitle>
-          <Button variant="outline" size="sm">
-            <Download className="w-4 h-4 mr-2" />
-            Download
+          <div className="flex items-center gap-3">
+            <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg shadow-lg">
+              <Sprout className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                Turf Tracker
+              </CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">Great for golf course/turf management</p>
+            </div>
+          </div>
+          <Button variant="outline" size="sm" onClick={handlePrint}>
+            <Printer className="w-4 h-4 mr-2" />
+            Print
           </Button>
         </CardHeader>
         <CardContent className="p-0">
@@ -651,7 +663,7 @@ export default function Component() {
                             ? "bg-yellow-50"
                             : "bg-orange-50"
                     }`}
-                    style={{ width: `${seasonWeeks * 16}px` }}
+                    style={{ width: `${seasonWeeks * 24}px` }}
                   >
                     {season.name}
                   </div>
@@ -666,7 +678,7 @@ export default function Component() {
                 <div
                   key={month.name}
                   className="p-2 text-center text-xs font-medium border-r bg-white"
-                  style={{ width: `${month.weeks * 16}px` }}
+                  style={{ width: `${month.weeks * 24}px` }}
                 >
                   {month.name} ({month.weeks}w)
                 </div>
@@ -707,7 +719,7 @@ export default function Component() {
                           return (
                             <div
                               key={weekNumber}
-                              className={`w-4 flex justify-center items-center border-r relative ${
+                              className={`w-6 flex justify-center items-center border-r relative ${
                                 isEvenWeek ? "bg-gray-100" : "bg-white"
                               } ${isDropTarget ? "bg-blue-100 ring-2 ring-blue-400 ring-inset" : ""}`}
                               onDragOver={(e) => handleDragOver(e, month.name, weekNumber)}
@@ -734,7 +746,7 @@ export default function Component() {
                                   )} ${applicationData.weekInSequence === 1 ? "cursor-move" : "cursor-default"}`}
                                 >
                                   {applicationData.weekInSequence === 1 && (
-                                    <GripVertical className="w-3 h-3 text-white opacity-70" />
+                                    <GripVertical className="w-4 h-4 text-white opacity-70" />
                                   )}
                                 </div>
                               )}
